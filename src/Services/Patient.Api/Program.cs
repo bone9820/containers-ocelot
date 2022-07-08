@@ -1,20 +1,21 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
-app.UseHttpsRedirection();
 
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/api/weatherforecast", () =>
+app.MapGet("/api/weatherforecast", (HttpContext context) =>
 {
+    var headers = context.Request.Headers;
+
     var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (

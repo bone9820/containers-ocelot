@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  patient.api:
+    container_name: patient.api
+    image: ${DOCKER_REGISTRY-}patient.api
+    build:
+      context: .
+      dockerfile: src/Services/Patient.Api/Dockerfile
+    ports:
+        - "8010:80"
+
+  gateway.api:
+    container_name: gateway.api
+    image: ${DOCKER_REGISTRY-}gateway.api
+    build:
+      context: .
+      dockerfile: src/Gateway.Api/Dockerfile
+    ports:
+        - "8000:443"
+    depends_on:
+        - patient.api
+

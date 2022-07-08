@@ -4,11 +4,11 @@
       "UpstreamPathTemplate": "/gateway/weatherforecast",
       "UpstreamHttpMethod": [ "Get" ],
       "DownstreamPathTemplate": "/api/weatherforecast",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5002
+          "Host": "patient.api",
+          "Port": 80
         }
       ]
     }
